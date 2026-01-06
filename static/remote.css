@@ -1,0 +1,642 @@
+
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  background: #121212;
+  color: #fff;
+  text-align: center;
+  padding: 28px;
+  font-family: Arial, sans-serif;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+h2 {
+  margin-bottom: 22px;
+  color: #4da6ff;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.remote-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.section-container {
+  width: 100%;
+  max-width: 400px;
+  background: #1e1e1e;
+  border-radius: 16px;
+  padding: 10px;
+  margin: 10px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.section-container:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.media-container {
+  background: linear-gradient(145deg, #1a1a1a, #222);
+}
+
+.circle-remote {
+  display: grid;
+  grid-template-columns: 80px 80px 80px;
+  grid-template-rows: 80px 80px 80px;
+  gap: 10px;
+  margin-bottom: 3px;
+  justify-content: center;
+}
+
+.circle-remote button {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 700;
+  user-select: none;
+  touch-action: manipulation;
+  border: none;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.circle-remote button:active {
+  transform: scale(0.92);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.center-btn {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.netflix-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  font-size: 12px; /* Slightly smaller font for this section */
+}
+.netflix-buttons .btn {
+  font-size: 12px;
+  padding: 10px 12px;
+}
+.netflix-buttons .alt-key {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.netflix-buttons button {
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  touch-action: manipulation;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.netflix-buttons button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mouse-pad {
+  width: 100%;
+  max-width: 440px; /* larger square */
+  aspect-ratio: 1 / 1; /* keep it square */
+  margin: 10px auto 6px;
+  background: linear-gradient(145deg, #303030, #262626); /* slightly brighter but subtle */
+  border-radius: 8px; /* less rounded for a boxier feel */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  touch-action: none;
+  user-select: none;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+.mouse-pad-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* purely visual */
+}
+
+.mouse-pad-overlay line {
+  stroke: rgba(77,166,255,0.18);
+  stroke-width: 0.9;
+}
+
+.mouse-pad-overlay circle {
+  fill: rgba(77,166,255,0.22);
+  stroke: rgba(77,166,255,0.38);
+  stroke-width: 0.9;
+}
+
+.mouse-pad-overlay text {
+  fill: rgba(255,255,255,0.92);
+  font-size: 11px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+@media (max-width: 420px) {
+  .mouse-pad { height: 280px; }
+  .mouse-pad-overlay text { font-size: 6.5px; }
+}
+
+.mouse-pad .mouse-pad-center {
+  color: #bbb;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.mouse-pad-legend { text-align:center; font-size:12px; color:#9aa; margin-top:6px; }
+
+.dpad-btn {
+  width: 100%;
+  height: 100%;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background: #2a2a2a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 0;
+}
+
+.dpad-corner {
+  width: 50px;
+  height: 50px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: #3a3a3a;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  transition: all 0.15s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  z-index: 2;
+}
+
+.dpad-btn:active {
+  transform: scale(0.92);
+  background: #444;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dpad-corner:active {
+  transform: scale(0.92);
+  background: #555;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dpad-up-left {
+  top: 25px;
+  left: 40px;
+}
+
+.dpad-up-right {
+  top: 25px;
+  right: 40px;
+}
+
+.dpad-down-left {
+  bottom: 25px;
+  left: 40px;
+}
+
+.dpad-down-right {
+  bottom: 25px;
+  right: 40px;
+}
+
+.dpad-up {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.dpad-left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.dpad-center {
+  grid-column: 2;
+  grid-row: 2;
+  background: linear-gradient(145deg, #333, #444);
+  font-size: 14px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dpad-center .speed-label {
+  font-size: 11px;
+  opacity: 0.8;
+  margin-bottom: 2px;
+}
+
+.dpad-center .speed-value {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.dpad-center .speed-icon {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.dpad-right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.dpad-down {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.mouse-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.mouse-buttons button {
+  flex: 1;
+  padding: 14px 10px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  background: #2a2a2a;
+  color: white;
+  border: none;
+  touch-action: manipulation;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mouse-buttons button:active {
+  transform: scale(0.95);
+  background: #444;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.scroll-buttons button {
+  flex: 1;
+  padding: 14px 10px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  background: #2a2a2a;
+  color: white;
+  border: none;
+  touch-action: manipulation;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-buttons button:active {
+  transform: scale(0.95);
+  background: #444;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.apps-container {
+  background: linear-gradient(145deg, #1a1a1a, #222);
+}
+
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  justify-content: center;
+}
+
+.app-btn {
+  padding: 14px 10px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  background: #2a2a2a;
+  color: white;
+  border: none;
+  touch-action: manipulation;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.app-btn:active {
+  transform: scale(0.95);
+  background: #444;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.keyboard-container {
+  background: linear-gradient(145deg, #1a1a1a, #222);
+}
+
+#keyboardInput {
+  background: #2a2a2a;
+  border: 2px solid #444;
+  color: white;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 12px;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#keyboardInput:focus {
+  background: #2a2a2a;
+  color: white;
+  border-color: #4da6ff;
+  box-shadow: 0 0 0 0.2rem rgba(77, 166, 255, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.keyboard-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.keyboard-buttons button {
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 15px;
+  font-weight: 600;
+  min-width: 120px;
+  border-radius: 10px;
+  border: none;
+  touch-action: manipulation;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.keyboard-buttons button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.shortcuts-container {
+  background: linear-gradient(145deg, #1a1a1a, #222);
+}
+
+.shortcuts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  justify-content: center;
+}
+
+.shortcut-btn {
+  padding: 14px 10px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  background: #2a2a2a;
+  color: white;
+  border: none;
+  touch-action: manipulation;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.shortcut-btn:active {
+  transform: scale(0.95);
+  background: #444;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.shortcut-btn.windows {
+  background: #0067c0;
+}
+
+.shortcut-btn.alt {
+  background: #8a2be2;
+}
+
+.shutdown-container {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.shutdown-container button {
+  padding: 14px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  touch-action: manipulation;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.shutdown-container button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+  display: none;
+}
+
+#status {
+  min-height: 22px;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #4da6ff;
+}
+
+.small {
+  font-size: 13px;
+  color: #aaa;
+  margin-top: 6px;
+  opacity: 0.8;
+}
+
+.v-toggle {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  color: #ddd;
+  z-index: 100;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 5px 0 5px 0;
+  color: #4da6ff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.speed-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  cursor: pointer;
+  user-select: none;
+}
+
+.speed-indicator .speed-icon {
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
+.speed-indicator .speed-label {
+  font-size: 10px;
+  font-weight: 600;
+  opacity: 0.7;
+  margin-bottom: 1px;
+}
+
+.dpad-center .speed-value {
+  font-size: 13px;
+  font-weight: bold;
+  color: #4da6ff !important;
+}
+
+/* Utility helpers */
+.full-width {
+  width: 100%;
+}
+
+/* Ensure center dpad button uses full width when requested */
+.dpad-center.full-width {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+
+.btn-primary {
+  background: #0067c0;
+}
+
+.btn-secondary {
+  background: #6c757d;
+}
+
+.btn-success {
+  background: #28a745;
+}
+
+.btn-danger {
+  background: #dc3545;
+}
+
+.btn-warning {
+  background: #ffc107;
+  color: #212529;
+}
+
+.btn-info {
+  background: #17a2b8;
+}
+
+.btn-primary:active {
+  background: #0056a3;
+}
+
+.btn-secondary:active {
+  background: #5a6268;
+}
+
+.btn-success:active {
+  background: #218838;
+}
+
+.btn-danger:active {
+  background: #c82333;
+}
+
+.btn-warning:active {
+  background: #e0a800;
+}
+
+.btn-info:active {
+  background: #138496;
+}
+
+.app-btn.spotify {
+  background: #1DB954;
+}
+
+.app-btn.dimmer {
+  background: #FF9500;
+}
+
+.app-btn.netflix {
+  background: #E50914;
+}
+
+.app-btn.youtube {
+  background: #FF0000;
+}
+
+.app-btn.spotify:active {
+  background: #1aa34a;
+}
+
+.app-btn.dimmer:active {
+  background: #e68900;
+}
+
+.app-btn.netflix:active {
+  background: #c40812;
+}
+
+.app-btn.youtube:active {
+  background: #e60000;
+}
