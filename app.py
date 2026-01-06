@@ -245,25 +245,6 @@ def close_dimmer():
         return jsonify({"action": "close_dimmer", "closed": False, "error": str(e), "details": results}), 500
 
 
-@app.route('/api/keyboard/alt_left', methods=['POST'])
-def keyboard_alt_left():
-    """Press Alt + Left Arrow (commonly used for back/jump).
-
-    Accepts optional JSON: {"times": <int>, "delay": <seconds>} to send the hotkey multiple times.
-    Returns JSON with 'times' and 'status'.
-    """
-    data = request.get_json(silent=True) or {}
-    times = int(data.get('times', 1)) if isinstance(data.get('times', 1), int) or str(data.get('times', 1)).isdigit() else 1
-    delay = float(data.get('delay', 0.08))
-
-    try:
-        for _ in range(max(1, times)):
-            pyautogui.hotkey('alt', 'left')
-            time.sleep(delay)
-        return jsonify({"action": "alt_left", "times": times})
-    except Exception as e:
-        return jsonify({"action": "alt_left", "error": str(e)}), 500
-
 @app.route('/api/open/netflix', methods=['POST'])
 def open_netflix():
     system = get_system()
@@ -315,6 +296,12 @@ def keyboard_alt_d():
     """Press Alt+D (focus address bar)"""
     pyautogui.hotkey('alt', 'd')
     return jsonify({"action": "alt_d"})
+
+@app.route('/api/keyboard/alt_left', methods=['POST'])
+def keyboard_alt_left():
+    """Press Alt+Left Arrow (commonly used for back/jump)"""
+    pyautogui.hotkey('alt', 'left')
+    return jsonify({"action": "alt_left"})
 
 
 @app.route('/api/keyboard/ctrl_plus', methods=['POST'])

@@ -62,6 +62,8 @@ async function pressBackspace() {
   }
 }
 
+
+
 async function pressEnter() {
   vibrateTap();
   statusEl.innerText = '↵ Enter...';
